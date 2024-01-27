@@ -111,6 +111,34 @@ public class PhoneBook {
             }
         }
     }
-        
+    
+    private static void removeNumber(HashMap<String, ArrayList<String>> phonebook) {
+        System.out.print("PhoneBook");
+        System.out.println("-=Remove a number from a contact=-");
+        System.out.print("Enter the name of the contact you want to remove a number from: ");
+        Scanner scn = new Scanner(System.in);
+        String contact = scn.nextLine();
+        contact = findContact(phonebook, contact);
+        if (contact != null) {
+            ArrayList<String> numbers = new ArrayList<>(phonebook.get(contact));
+            System.out.printf("-=Deleting a contact number %s=-\n", contact);
+            for (int i = 0; i < mumbers.size(); i++) {
+                System.out.printf("%d. %s\n", i + 1, numbers.get(i));
+            }
+            System.out.print("Enter the number change code (0 - if the number you a looking for is not found): ");
+            int deletingNumber = Integer.parseInt(scn.nextLine());
+            if (deletingNumber != 0) {
+                numbers.remove(deletingNumber - 1);
+                phonebook.replace(contact, numbers);
+            }
+        } else {
+            System.out.println(" No contacts were found for the specified request");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
