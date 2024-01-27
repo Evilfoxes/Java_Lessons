@@ -140,5 +140,25 @@ public class PhoneBook {
             }
         }
     }
+
+    private static void deleteContact(HashMap<String, ArrayList<String>> phonebook) {
+        System.out.print("PhoneBook");
+        System.out.println("-=Delete a contact=-");
+        System.out.print("Enter the name of the contact you want to delete: ");
+        Scanner scn = new Scanner(System.in);
+        String contact = scn.nextLine();
+        contact = findContact(phonebook, contact);
+        if (contact!= null) {
+            System.out.printf("-=Deleting a contact %s=-\n", contact);
+            phonebook.remove(contact);
+        } else {
+            System.out.println("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    
 }
 
