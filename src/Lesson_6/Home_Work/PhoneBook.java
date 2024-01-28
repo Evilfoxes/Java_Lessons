@@ -191,6 +191,30 @@ public class PhoneBook {
         }
     }
 
-    
+    private static void addPhoneNumber (HashMap<String, ArrayList<String>> phonebook) {
+        System.out.print("PhoneBook");
+        System.out.println("-=Add a number to a contact=-");
+        System.out.print("Enter the name of the contact you want to add a number to: ");
+        Scanner scn = new Scanner(System.in);
+        String contact = scn.nextLine();
+        contact = findContact(phonebook, contact);
+        if (contact!= null) {
+            System.out.printf("-= Adding a number to an existing contact =- ");
+            System.out.print("Enter the number you want to add: ");
+            String number = scn.nextLine();
+            ArrayList<String> numbers = new ArrayList<>(phonebook.get(contact));
+            numbers.add(number);
+            phonebook.replace(contact, numbers);
+        } else {
+            System.out.println("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public static String findContact(HashMap<String, ArrayList<String>> phonebook, String contact);
+    }
 }
 
