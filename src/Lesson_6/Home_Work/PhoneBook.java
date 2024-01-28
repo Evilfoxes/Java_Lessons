@@ -214,7 +214,25 @@ public class PhoneBook {
             }
         }
 
-        public static String findContact(HashMap<String, ArrayList<String>> phonebook, String contact);
+        public static String foundContact(HashMap<String, ArrayList<String>> phonebook, String contact) {
+            String foundContact = null;
+            if (phonebook.containsKey(contact)) {
+                foundContact = contact;
+            } else {
+                ArrayList<String> contacts  = new ArrayList<>();
+                for (String item: phonebook.keySet()) {
+                    contacts.add(item);
+                    System.out.printf("%d. %s\n", contact.size(), item);
+                }
+            }
+            System.out.print("Enter the number change code (0 - if the number you a looking for is not found): ");
+            Scanner scn = new Scanner(System.in);
+            int choice = Integer.parseInt(scn.nextLine());
+            if (choice != 0) {
+                foundContact = contact.get(choice - 1);
+            }
+        }
+        return foundContact;
     }
 }
 
