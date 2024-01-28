@@ -159,6 +159,38 @@ public class PhoneBook {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static void printPhB(HashMap<String, ArrayList<String>> phonebook) {
+        System.out.print("PhoneBook");
+        System.out.println("-=Show all contacts=-");
+        String[][] numbersCounter = new String[2][phonebook.size()];
+        int curContact = 0;
+        for (var item: phonebook.entrySet()) {
+            numbersCounter[0][curContact] = item.getKey();
+            numbersCounter[1][curContact] = ""  + item.getValue().size();
+            for (int i  =  curContact; i > 0; i--) {
+                if (Integer.parseInt(numbersCounter[1][i]) > Integer.parseInt(numbersCounter[1][i - 1])) {
+                    String temp = numbersCounter[0][i];
+                    numbersCounter[0][i] = numbersCounter[0][i - 1];
+                    numbersCounter[0][i - 1] = temp;
+                    temp = numbersCounter[1][i];
+                    numbersCounter[1][i] = numbersCounter[1][i - 1];
+                    numbersCounter[1][i - 1] = temp;
+                } else {
+                    i = 0;
+                }
+            }
+            curContact++;
+        }
+        for (int i = 0; i < numbersCounter[0].length; i++) {
+            System.out.println(numbersCounter[0][i] + ":");
+            for (int j = 0; j < phonebook.get(numbersCounter[0][i].size; j++) {
+                System.out.println("\t" + phonebook.get(numbersCounter[0][i]).get(j));
+            }
+        }
+    }
+
     
 }
 
