@@ -273,5 +273,11 @@ public class PhoneBook {
         if (choice == 0) scn.close();
         return choice;
     }
+
+    private static void timeOut() {
+        System.out.println("Press ENTER to continue");
+        Scanner stopscn = new Scanner(System.in);
+        stopscn.nextLine();
+    }
 }
 
