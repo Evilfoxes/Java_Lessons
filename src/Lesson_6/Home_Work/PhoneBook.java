@@ -18,7 +18,7 @@ public class PhoneBook {
             "-------------------------------------------",
             "0. Exit"));
 
-        HashMap<String, ArrayList<String>> = phonebook = new HashMap<>();
+        HashMap<String, ArrayList<String>> phonebook = new HashMap<>();
         
         int userChoice = -1;
         while (userChoice!= 0) {
@@ -91,7 +91,7 @@ public class PhoneBook {
             ArrayList<String> numbers = new ArrayList<>(phonebook.get(contact));
             System.out.println("Change the number of a contact %s \n ", contact);
             System.out.print("Enter the new number of the contact: ");
-            for (int i = 0, i < number.size(); i++) {
+            for (int i = 0; i < number.size(); i++) {
                 System.out.println("%d. %s\n", i + 1, numbers.get(i));
             }
             System.out.print("Enter the number change code (0 - if the number you a looking for is not found): ");
@@ -185,7 +185,7 @@ public class PhoneBook {
         }
         for (int i = 0; i < numbersCounter[0].length; i++) {
             System.out.println(numbersCounter[0][i] + ":");
-            for (int j = 0; j < phonebook.get(numbersCounter[0][i].size; j++) {
+            for (int j = 0; j < phonebook.get(numbersCounter[0][i]).size(); j++) {
                 System.out.println("\t" + phonebook.get(numbersCounter[0][i]).get(j));
             }
         }
