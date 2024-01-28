@@ -214,7 +214,7 @@ public class PhoneBook {
             }
         }
 
-        public static String foundContact(HashMap<String, ArrayList<String>> phonebook, String contact) {
+        public static String findContact(HashMap<String, ArrayList<String>> phonebook, String contact) {
             String foundContact = null;
             if (phonebook.containsKey(contact)) {
                 foundContact = contact;
@@ -234,5 +234,34 @@ public class PhoneBook {
         }
         return foundContact;
     }
+
+    private static void addNewContact(HashMap<String, ArrayList<String>> phonebook) {
+        System.out.print("PhoneBook");
+        System.out.println("-=Add a new contact=-");
+        System.out.print("Enter the name of the contact you want to add: ");
+        Scanner scn = new Scanner(System.in);
+        String contact = scn.nextLine();
+        if (phonebook.containsKey(contact)) {
+            System.out.println("!!!ERROR: %s - CONTACT ALREADY EXISTS!!!\n", contact);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            ArrayList<String> numbers = new ArrayList<>();
+            String inputNext = "y";
+            while (inputNext.toLowerCase().equals("y")) {
+                System.out.print("Enter the number you want to add: ");
+                String number = scn.nextLine();
+                numbers.add(number);
+                System.out.print("Add another number? (y/n): ");
+                inputNext = scn.nextLine();
+            }
+            phonebook.put(contact, numbers);
+        }
+    }
+
+    
 }
 
