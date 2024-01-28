@@ -262,6 +262,16 @@ public class PhoneBook {
         }
     }
 
-    
+    public static int showMainMenu(List<String> menu) {
+        System.out.print("PhoneBook");
+        for (String option : menu) {
+            System.out.println(option);
+        }
+        System.out.print("Enter your choice: ");
+        Scanner scn = new Scanner(System.in);
+        int choice = Integer.parseInt(scn.nextLine());
+        if (choice == 0) scn.close();
+        return choice;
+    }
 }
 
