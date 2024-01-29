@@ -50,7 +50,7 @@ public class PhoneBook {
                     System.out.println("-=The application is finished=-");
                     break;
                 default:
-                    System.out.println("!!!ERROR: %s - UNSUPPORTED OPERATION!!!\n", userChoice);
+                    System.out.printf("!!!ERROR: %s - UNSUPPORTED OPERATION!!!\n", userChoice);
                     timeOut();
                     break;
             }
@@ -67,11 +67,11 @@ public class PhoneBook {
         if (contact!= null) {
             ArrayList<String> numbers = new ArrayList<>(phonebook.get(contact));
             phonebook.remove(contact);
-            System.out.println("Change the name of a contact %s \n ", contact);
+            System.out.printf("Change the name of a contact %s \n ", contact);
             System.out.print("Enter the new name of the contact: ");
             phonebook.put(scn.nextLine(), numbers);
         } else {
-            System.out.println("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
+            System.out.printf("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -89,10 +89,10 @@ public class PhoneBook {
         contact = findContact(phonebook, contact);
         if (contact!= null) {
             ArrayList<String> numbers = new ArrayList<>(phonebook.get(contact));
-            System.out.println("Change the number of a contact %s \n ", contact);
+            System.out.printf("Change the number of a contact %s \n ", contact);
             System.out.print("Enter the new number of the contact: ");
-            for (int i = 0; i < number.size(); i++) {
-                System.out.println("%d. %s\n", i + 1, numbers.get(i));
+            for (int i = 0; i < numbers.size(); i++) {
+                System.out.printf("%d. %s\n", i + 1, numbers.get(i));
             }
             System.out.print("Enter the number change code (0 - if the number you a looking for is not found): ");
             int changingNumber = Integer.parseInt(scn.nextLine());
@@ -103,7 +103,7 @@ public class PhoneBook {
                 phonebook.replace(contact, numbers);
             }
         } else {
-            System.out.println("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
+            System.out.printf("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -122,7 +122,7 @@ public class PhoneBook {
         if (contact != null) {
             ArrayList<String> numbers = new ArrayList<>(phonebook.get(contact));
             System.out.printf("-=Deleting a contact number %s=-\n", contact);
-            for (int i = 0; i < mumbers.size(); i++) {
+            for (int i = 0; i < numbers.size(); i++) {
                 System.out.printf("%d. %s\n", i + 1, numbers.get(i));
             }
             System.out.print("Enter the number change code (0 - if the number you a looking for is not found): ");
@@ -152,7 +152,7 @@ public class PhoneBook {
             System.out.printf("-=Deleting a contact %s=-\n", contact);
             phonebook.remove(contact);
         } else {
-            System.out.println("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
+            System.out.printf("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -206,7 +206,7 @@ public class PhoneBook {
             numbers.add(number);
             phonebook.replace(contact, numbers);
         } else {
-            System.out.println("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
+            System.out.printf("!!!ERROR: %s - CONTACT NOT FOUND!!!\n", contact);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -214,22 +214,25 @@ public class PhoneBook {
             }
         }
 
-        public static String findContact(HashMap<String, ArrayList<String>> phonebook, String contact) {
-            String foundContact = null;
-            if (phonebook.containsKey(contact)) {
-                foundContact = contact;
-            } else {
-                ArrayList<String> contacts  = new ArrayList<>();
-                for (String item: phonebook.keySet()) {
+    }
+
+    private static String findContact(HashMap<String, ArrayList<String>> phonebook, String contact) {
+        String foundContact = null;
+        if (phonebook.containsKey(contact)) {
+            foundContact = contact;
+        } else {
+            ArrayList<String> contacts = new ArrayList<>();
+            for (String item: phonebook.keySet()) {
+                if (item.contains(contact)) {
                     contacts.add(item);
-                    System.out.printf("%d. %s\n", contact.size(), item);
+                    System.out.printf("%d. %s\n", contacts.size(), item);
                 }
             }
             System.out.print("Enter the number change code (0 - if the number you a looking for is not found): ");
             Scanner scn = new Scanner(System.in);
             int choice = Integer.parseInt(scn.nextLine());
-            if (choice != 0) {
-                foundContact = contact.get(choice - 1);
+            if (choice!= 0) {
+                foundContact = contacts.get(choice - 1);
             }
         }
         return foundContact;
@@ -242,7 +245,7 @@ public class PhoneBook {
         Scanner scn = new Scanner(System.in);
         String contact = scn.nextLine();
         if (phonebook.containsKey(contact)) {
-            System.out.println("!!!ERROR: %s - CONTACT ALREADY EXISTS!!!\n", contact);
+            System.out.printf("!!!ERROR: %s - CONTACT ALREADY EXISTS!!!\n", contact);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
